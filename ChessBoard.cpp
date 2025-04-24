@@ -113,7 +113,7 @@ std::vector<ChessBoard::CharacterBoard> ChessBoard::findAllQueenPlacements() {
 
     queenHelper(0, board, queens, allSolutions);
 
-    return allSolutions; // Placeholder for the actual implementation
+    return allSolutions; 
 
 }
 
@@ -131,7 +131,6 @@ std::vector<ChessBoard::CharacterBoard> ChessBoard::findAllQueenPlacements() {
 void ChessBoard::queenHelper(const int& col, std::vector<std::vector<ChessPiece*>>& board, std::vector<Queen*>& placedQueens, std::vector<ChessBoard::CharacterBoard>& allBoards)
 {
     if (col == 8) {
-        // All queens placed, record this configuration
         ChessBoard::CharacterBoard solution(8, std::vector<char>(8, '*'));
         for (ChessPiece* q : placedQueens) {
             solution[q->getRow()][q->getColumn()] = 'Q';
@@ -151,7 +150,7 @@ void ChessBoard::queenHelper(const int& col, std::vector<std::vector<ChessPiece*
         }
 
         if (isSafe) {
-            Queen* newQueen = new Queen("BLACK", row, col); // color is arbitrary here
+            Queen* newQueen = new Queen("BLACK", row, col);
             board[row][col] = newQueen;
             placedQueens.push_back(newQueen);
 
@@ -163,7 +162,7 @@ void ChessBoard::queenHelper(const int& col, std::vector<std::vector<ChessPiece*
         }
     }
 
-    }
+}
     
     // Define the groupSimilarBoards function outside of queenHelper
     std::vector<std::vector<ChessBoard::CharacterBoard>> ChessBoard::groupSimilarBoards(const std::vector<CharacterBoard>& boards) {

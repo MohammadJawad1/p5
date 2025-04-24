@@ -13,13 +13,12 @@ std::vector<std::vector<T>> Transform::rotate(const std::vector<std::vector<T>>&
     int n = matrix.size();
     std::vector<std::vector<T>> result = matrix;
 
-    // Transpose
-    for (int i = 0; i < n; ++i) {
-        for (int j = i + 1; j < n; ++j) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; i++) {
             std::swap(result[i][j], result[j][i]);
         }
     }
-    // Reverse each row
+
     for (int i = 0; i < n; ++i) {
             std::reverse(result[i].begin(), result[i].end());
     }
@@ -39,8 +38,8 @@ std::vector<std::vector<T>> Transform::flipAcrossVertical(const std::vector<std:
     int n = matrix.size();
     std::vector<std::vector<T>> result = matrix;
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n / 2; ++j) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n / 2; i++) {
             std::swap(result[i][j], result[i][n - 1 - j]);
         }
     }
@@ -61,7 +60,7 @@ std::vector<std::vector<T>> Transform::flipAcrossHorizontal(const std::vector<st
     int n = matrix.size();
     std::vector<std::vector<T>> result = matrix;
 
-    for (int i = 0; i < n / 2; ++i) {
+    for (int i = 0; i < n / 2; i++) {
         std::swap(result[i], result[n - 1 - i]);
     }
 
