@@ -10,14 +10,8 @@
  */
 template <typename T>
 std::vector<std::vector<T>> Transform::rotate(const std::vector<std::vector<T>>& matrix) {
-    int n = matrix.size();
-    std::vector<std::vector<T>> result(n, std::vector<T>(n));
-
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < n; ++j)
-            result[j][n - 1 - i] = matrix[i][j];
-
-    return result;
+    // your code here.
+    return {};
 }
 
 /**
@@ -30,14 +24,8 @@ std::vector<std::vector<T>> Transform::rotate(const std::vector<std::vector<T>>&
  */
 template <typename T>
 std::vector<std::vector<T>> Transform::flipAcrossVertical(const std::vector<std::vector<T>>& matrix) {
-    int n = matrix.size();
-    std::vector<std::vector<T>> result = matrix;
-
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < n / 2; ++j)
-            std::swap(result[i][j], result[i][n - 1 - j]);
-
-    return result;
+    // your code here
+    return {};
 }
 
 /**
@@ -50,12 +38,6 @@ std::vector<std::vector<T>> Transform::flipAcrossVertical(const std::vector<std:
  */
 template <typename T>
 std::vector<std::vector<T>> Transform::flipAcrossHorizontal(const std::vector<std::vector<T>>& matrix) {
-    int n = matrix.size();
-    std::vector<std::vector<T>> result = matrix;
-
-    for (int i = 0; i < n / 2; ++i)
-        std::swap(result[i], result[n - 1 - i]);
-
-    return result;
+    // your code here
+    return {};
 }
-
