@@ -162,4 +162,11 @@ void ChessBoard::queenHelper(const int& col, std::vector<std::vector<ChessPiece*
             board[row][col] = nullptr;
         }
     }
-}
+
+    }
+    
+    // Define the groupSimilarBoards function outside of queenHelper
+    std::vector<std::vector<ChessBoard::CharacterBoard>> ChessBoard::groupSimilarBoards(const std::vector<CharacterBoard>& boards) {
+        // Empty return statement, no implementation
+        return {};
+    }
