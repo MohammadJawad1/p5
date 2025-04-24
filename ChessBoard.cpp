@@ -98,3 +98,68 @@ ChessBoard::~ChessBoard() {
         }
     }
 }
+
+/**
+ * @brief Finds all possible solutions to the 8-queens problem.
+ * 
+ * @return A vector of CharacterBoard objects, 
+ *         each representing a unique solution 
+ *         to the 8-queens problem.
+ */
+std::vector<ChessBoard::CharacterBoard> ChessBoard::findAllQueenPlacements() {
+    std::vector<CharacterBoard> allSolutions;
+    std::vector<std::vector<ChessPiece*>> board(8, std::vector<ChessPiece*>(8, nullptr));
+    std::vector<Queen*> queens;
+
+    queenHelper(0, board, queens, allSolutions);
+
+    return allSolutions; // Placeholder for the actual implementation
+
+}
+
+/**
+ * @brief A STATIC helper function for recursively solving the 8-queens problem.
+ * 
+ * This function places queens column by column, checks for valid placements,
+ * and stores all valid board configurations in the provided list.
+ * 
+ * @param col A const reference to aninteger representing the current column being processed.
+ * @param board A (non-const) reference to a 2D vector of ChessPiece*, representing the current board configuration
+ * @param placedQueens A (non-const) reference to a vector storing Queen*, which represents the queens we've placed so far
+ * @param allBoards A (non-const) reference to a vector of CharacterBoard objects storing all the solutions we've found thus far
+ */
+void ChessBoard::queenHelper(const int& col, std::vector<std::vector<ChessPiece*>>& board, std::vector<Queen*>& placedQueens, std::vector<ChessBoard::CharacterBoard>& allBoards)
+{
+    if (col == 8) {
+        // All queens placed, record this configuration
+        ChessBoard::CharacterBoard solution(8, std::vector<char>(8, '*'));
+        for (ChessPiece* q : placedQueens) {
+            solution[q->getRow()][q->getColumn()] = 'Q';
+        }
+        allBoards.push_back(solution);
+        return;
+    }
+
+    for (int row = 0; row < 8; ++row) {
+        bool isSafe = true;
+
+        for (ChessPiece* q : placedQueens) {
+            if (q->canMove(row, col, board)) {
+                isSafe = false;
+                break;
+            }
+        }
+
+        if (isSafe) {
+            Queen* newQueen = new Queen("BLACK", row, col); // color is arbitrary here
+            board[row][col] = newQueen;
+            placedQueens.push_back(newQueen);
+
+            queenHelper(col + 1, board, placedQueens, allBoards);
+
+            placedQueens.pop_back();
+            delete board[row][col];
+            board[row][col] = nullptr;
+        }
+    }
+}
