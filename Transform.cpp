@@ -18,7 +18,7 @@ std::vector<std::vector<T>> Transform::rotate(const std::vector<std::vector<T>>&
     std::vector<std::vector<T>> result = matrix;
 
     for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             std::swap(result[i][j], result[j][i]);
         }
     }
@@ -43,7 +43,7 @@ std::vector<std::vector<T>> Transform::flipAcrossVertical(const std::vector<std:
     std::vector<std::vector<T>> result = matrix;
 
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n / 2; i++) {
+        for (int j = 0; j < n / 2; j++) {
             std::swap(result[i][j], result[i][n - 1 - j]);
         }
     }
