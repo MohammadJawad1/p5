@@ -1,3 +1,7 @@
+//Mohammad Jawad
+//April 25 2024
+//ChessBoard implementation for project 5 that included the queen helper, the similar groups, and the queen recursive functions.
+
 #include "ChessBoard.hpp"
 #include "Transform.hpp"
 /**

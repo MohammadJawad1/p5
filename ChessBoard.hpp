@@ -1,3 +1,7 @@
+//Mohammad Jawad
+//April 25 2024
+//ChessBoard header for project 5 that included the queen helper, the similar groups, and the queen recursive functions.
+
 /**
  * @class ChessBoard
  * @brief Represents an 8x8 board of Chess Pieces used to play chess
