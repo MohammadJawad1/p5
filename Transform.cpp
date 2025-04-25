@@ -23,7 +23,7 @@ std::vector<std::vector<T>> Transform::rotate(const std::vector<std::vector<T>>&
         }
     }
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
             std::reverse(result[i].begin(), result[i].end());
     }
     
