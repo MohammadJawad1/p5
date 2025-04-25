@@ -1,5 +1,5 @@
 #include "ChessBoard.hpp"
-
+#include "Transform.hpp"
 /**
     * Default constructor. 
     * @post The board is setup with the following restrictions:
@@ -163,9 +163,48 @@ void ChessBoard::queenHelper(const int& col, std::vector<std::vector<ChessPiece*
     }
 
 }
-    
-    // Define the groupSimilarBoards function outside of queenHelper
-    std::vector<std::vector<ChessBoard::CharacterBoard>> ChessBoard::groupSimilarBoards(const std::vector<CharacterBoard>& boards) {
-        // Empty return statement, no implementation
-        return {};
+/**
+ * @brief Groups similar chessboard configurations by transformations.
+ * 
+ * This function organizes a list of chessboard configurations into groups of similar boards, 
+ * where similarity is defined as being identical under a 
+ *      1) Rotation (clockwise: 0°, 90°, 180°, 270°)
+ *      2) Followed by a flip across the horizontal or vertical axis
+ * 
+ * @param boards A const ref. to a vector of `CharacterBoard` objects, each representing a chessboard configuration.
+ * 
+ * @return A 2D vector of `CharacterBoard` objects, 
+ *         where each inner vector is a list of boards 
+ *         that are transformations of each other.
+ */
+std::vector<std::vector<ChessBoard::CharacterBoard>> ChessBoard::groupSimilarBoards(const std::vector<CharacterBoard>& boards) {
+    std::vector<std::vector<CharacterBoard>> result;
+
+    for (auto board : boards) {
+        bool isSimilar = false;
+
+        for (auto& group : result) {
+            CharacterBoard transformed = group[0];
+
+            for (int i = 0; i < 4; i++) {
+                if (board == transformed || board == Transform::flipAcrossVertical(transformed) || board == Transform::flipAcrossHorizontal(transformed)) {    
+                    group.push_back(board);
+                    isSimilar = true;
+                    break;
+                }
+
+                // Rotate 90° clockwise for next comparison
+                transformed = Transform::rotate(transformed);
+            }
+
+            if (isSimilar) break;
+        }
+
+        // If no similar board found, create a new group
+        if (!isSimilar) {
+            result.push_back({ board });
+        }
     }
+
+    return result;
+}
